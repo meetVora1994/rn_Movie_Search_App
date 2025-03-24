@@ -4,7 +4,6 @@ import {images} from "@/constants/images";
 import MovieCard from "@/components/MovieCard";
 import useFetch from "@/services/useFetch";
 import {fetchMovies} from "@/services/api";
-import {icons} from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
 import {updateSearchCount} from "@/services/appwrite";
 
@@ -45,19 +44,16 @@ const Search = () => {
                 data={movies}
                 renderItem={({item}) => <MovieCard {...item}/>}
                 keyExtractor={(item) => item.id}
-                className="px-5"
                 numColumns={3}
                 columnWrapperStyle={{
-                    justifyContent: 'center',
                     gap: 16,
-                    marginVertical: 16
+                    marginVertical: 16,
+                    paddingHorizontal: 20
                 }}
                 contentContainerStyle={{paddingBottom: 100}}
                 ListHeaderComponent={
                     <>
-                        <View className="w-full flex-row justify-center mt-20 items-center">
-                            <Image source={icons.logo} className="w-12 h-10"/>
-                        </View>
+                        <View className="h-20"/>
 
                         <View className="my-5">
                             <SearchBar
@@ -76,7 +72,7 @@ const Search = () => {
                         )}
 
                         {!loading && !error && searchQuery.trim() && movies?.length > 0 && (
-                            <Text className="text-xl text-white font-bold">
+                            <Text className="text-xl text-white font-bold px-5">
                                 Search Results for {' '}
                                 <Text className="text-accent">{searchQuery}</Text>
                             </Text>

@@ -30,7 +30,7 @@ const MovieDetails = () => {
                     <Image
                         source={{uri: `https://image.tmdb.org/t/p/w500${movie?.poster_path}`}}
                         className="w-full h-[550px]"
-                        resizeMode="stretch"
+                        resizeMode="cover"
                     />
                 </View>
 
@@ -46,12 +46,16 @@ const MovieDetails = () => {
                         <Text className="text-light-200 text-sm">({movie?.vote_count} votes)</Text>
                     </View>
                     <MovieInfo label={"Overview"} value={movie?.overview} />
-                    <MovieInfo label={"Genres"} value={movie?.genres?.map((g) => g.name).join(' - ')} />
-                    <View className="flex-row justify-between w-1/2">
-                        <MovieInfo label={"Budget"} value={`$${movie?.budget ?? 0 / 1_000_000} million`} />
-                        <MovieInfo label={"Revenue"} value={`$${movie?.revenue ?? 0 / 1_000_000} million`} />
+                    <MovieInfo label={"Genres"} value={movie?.genres?.map((g) => g.name).join(' • ')} />
+                    <View className="flex-row w-full">
+                        <View className="w-1/2">
+                            <MovieInfo label={"Budget"} value={`$${movie?.budget ?? 0 / 1_000_000} million`} />
+                        </View>
+                        <View className="w-1/2">
+                            <MovieInfo label={"Revenue"} value={`$${movie?.revenue ?? 0 / 1_000_000} million`} />
+                        </View>
                     </View>
-                    <MovieInfo label={"Production Companies"} value={movie?.production_companies?.map((c)=>c.name)?.join(' - ')} />
+                    <MovieInfo label={"Production Companies"} value={movie?.production_companies?.map((c)=>c.name)?.join(' • ')} />
                 </View>
             </ScrollView>
 

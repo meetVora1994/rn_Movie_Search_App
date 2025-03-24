@@ -1,6 +1,5 @@
 import {ActivityIndicator, FlatList, Image, ScrollView, Text, useWindowDimensions, View} from "react-native";
 import {images} from "@/constants/images";
-import {icons} from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
 import {useRouter} from "expo-router";
 import useFetch from "@/services/useFetch";
@@ -35,11 +34,11 @@ export default function Index() {
                 resizeMode="stretch"
             />
             <ScrollView
-                className="flex-1 px-5"
+                className="flex-1"
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{minHeight: "100%", paddingBottom: 10}}
             >
-                <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto"/>
+                <View className="h-20"/>
 
                 {moviesLoading || trendingLoading ? (
                     <ActivityIndicator
@@ -61,13 +60,14 @@ export default function Index() {
 
                             {trendingMovies && (
                                 <View className="mt-10">
-                                    <Text className="text-lg text-white font-bold mb-3">Trending Movies</Text>
+                                    <Text className="text-lg text-white font-bold mb-3 px-5">Trending Movies</Text>
 
                                     <FlatList
                                         className="mb-4 mt-3"
+                                        contentContainerStyle={{paddingRight: 40}}
                                         horizontal
                                         showsHorizontalScrollIndicator={false}
-                                        ItemSeparatorComponent={()=> (<View className={"w-4"}/>)}
+                                        ItemSeparatorComponent={() => (<View className={"w-4"}/>)}
                                         data={trendingMovies}
                                         renderItem={({item, index}) => (
                                             <TrendingMovieCard movie={item} index={index}/>
@@ -78,7 +78,7 @@ export default function Index() {
                             )}
 
                             <>
-                                <Text className="text-lg text-white font-bold mt-5 mb-3">
+                                <Text className="text-lg text-white font-bold mt-5 mb-3 px-5">
                                     Latest Movies
                                 </Text>
 
@@ -92,12 +92,11 @@ export default function Index() {
                                     keyExtractor={(item) => item.id}
                                     numColumns={3}
                                     columnWrapperStyle={{
-                                        justifyContent: 'flex-start',
                                         gap: 20,
                                         paddingRight: 5,
                                         marginBottom: 10
                                     }}
-                                    className="mt-2 pb-32"
+                                    className="mt-2 pb-32 px-5"
                                     scrollEnabled={false}
                                 />
                             </>
